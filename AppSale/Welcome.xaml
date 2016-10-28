@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppSale.Welcome">
+  <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
+  <!--<ContentPage.ToolbarItems>
+    <ToolbarItem Text="Sign Up" Clicked="OnSignUpButtonClicked" />
+  </ContentPage.ToolbarItems>-->
+  <!--<ContentPage.Content>-->
+    <StackLayout  Orientation="Vertical" VerticalOptions="StartAndExpand">
+      <Label Text="Username" />
+      <Entry x:Name="usernameEntry" Placeholder="username" />
+      <Label Text="Password" />
+      <Entry x:Name="passwordEntry" IsPassword="true" />
+      <Button Text="Login" MinimumHeightRequest="30" Clicked="OnLoginButtonClicked" />
+      <Button Text="FaceBook" Clicked="OnFacebookLoginButtonClicked" Image="FACEBOOK.png" HeightRequest="50" />
+      <Button Text="Register" MinimumHeightRequest="30" Clicked="OnSignUpButtonClicked" />
+      <Button Text="Forgot username/password" MinimumHeightRequest="30" Clicked="OnForgotButtonClicked" />
+      <Label x:Name="messageLabel" />
+    </StackLayout>
+  <!--</ContentPage.Content>-->
+</ContentPage>
