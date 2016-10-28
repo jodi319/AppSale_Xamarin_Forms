@@ -10,10 +10,11 @@ using Android.OS;
 using Microsoft.WindowsAzure.MobileServices;
 using System.Threading.Tasks;
 using static AppSale.App;
+using Android.Webkit;
 
 namespace AppSale.Droid
 {
-	[Activity (Label = "AppSale.Droid",
+	[Activity (Label = "AppSale",
 		Icon = "@drawable/icon",
 		MainLauncher = true,
 		ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation,
@@ -41,34 +42,59 @@ namespace AppSale.Droid
 
 
 
-        public async Task<bool> Authenticate()
+        public async Task<bool> AuthenticateAsync()
         {
-            var success = false;
-            var message = string.Empty;
+            bool success = false;
             try
             {
-                // Sign in with Facebook login using a server-managed flow.
-                user = await TodoItemManager.DefaultManager.CurrentClient.LoginAsync(this,
-                    MobileServiceAuthenticationProvider.Facebook);
-                if (user != null)
+                if (user == null)
                 {
-                    message = string.Format("you are now signed-in as {0}.",
-                        user.UserId);
-                    success = true;
+                    // The authentication provider could also be Facebook, Twitter, or Microsoft
+                    user = await TodoItemManager.DefaultManager.CurrentClient.LoginAsync(this, MobileServiceAuthenticationProvider.Google);
+                    if (user != null)
+                    {
+                        CreateAndShowDialog(string.Format("You are now logged in - {0}", user.UserId), "Logged in!");
+                    }
                 }
+                success = true;
             }
             catch (Exception ex)
             {
-                message = ex.Message;
+                CreateAndShowDialog(ex.Message, "Authentication failed");
+            }
+            return success;
+        }
+
+        public async Task<bool> LogoutAsync()
+        {
+            bool success = false;
+            try
+            {
+                if (user != null)
+                {
+                    CookieManager.Instance.RemoveAllCookie();
+                    await TodoItemManager.DefaultManager.CurrentClient.LogoutAsync();
+                    CreateAndShowDialog(string.Format("You are now logged out - {0}", user.UserId), "Logged out!");
+                }
+                user = null;
+                success = true;
+            }
+            catch (Exception ex)
+            {
+                CreateAndShowDialog(ex.Message, "Logout failed");
             }
 
-            // Display the success or failure message.
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.SetMessage(message);
-            builder.SetTitle("Sign-in result");
-            builder.Create().Show();
-
             return success;
+        }
+
+        void CreateAndShowDialog(string message, string title)
+        {
+            var builder = new AlertDialog.Builder(this);
+            builder.SetMessage(message);
+            builder.SetTitle(title);
+            builder.SetNeutralButton("OK", (sender, args) => {
+            });
+            builder.Create().Show();
         }
     }
 }

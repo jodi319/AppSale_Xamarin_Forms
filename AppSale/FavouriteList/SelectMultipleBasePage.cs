@@ -54,9 +54,19 @@ namespace Multiselect
 					Constraint.Constant (50),
 					Constraint.RelativeToParent (p => p.Height - 10)
 				);
-				View = layout;
-			}
-		}
+                View = layout;
+
+                Button myButton1 = new Button { Text = "My Button 1" };
+                var layout2 = new StackLayout();
+                layout2.Children.Add(myButton1);
+                myButton1.Clicked += (object sender, EventArgs e) => layout.ForceLayout();
+                //View = layout2;
+                //layout.Children.Add(button,
+                //    Constraint.Constant(10),
+                //    Constraint.Constant(10));
+
+            }
+        }
 		public List<WrappedSelection<T>> WrappedItems = new List<WrappedSelection<T>>();
 		public SelectMultipleBasePage(List<T> items)
 		{
@@ -66,17 +76,17 @@ namespace Multiselect
 				ItemTemplate = new DataTemplate (typeof(WrappedItemSelectionTemplate)),
 			};
 
-            Button button = new Button
-            {
-                Text = String.Format("Tap for click count!")
-            };
-            button.Clicked += (sender, args) =>
-            {
-                DisplayAlert("Alert", "Button Clicked", "OK");
-                //count++;
-                //button.Text =
-                //    String.Format("{0} click{1}!", count, count == 1 ? "" : "s");
-            };
+            //Button button = new Button
+            //{
+            //    Text = String.Format("Tap for click count!")
+            //};
+            //button.Clicked += (sender, args) =>
+            //{
+            //    DisplayAlert("Alert", "Button Clicked", "OK");
+            //    //count++;
+            //    //button.Text =
+            //    //    String.Format("{0} click{1}!", count, count == 1 ? "" : "s");
+            //};
 
             mainList.ItemSelected += (sender, e) => {
 				if (e.SelectedItem == null) return;

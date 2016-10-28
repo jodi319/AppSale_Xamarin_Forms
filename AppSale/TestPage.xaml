@@ -4,7 +4,7 @@
              x:Class="AppSale.TestPage">
   <Label Text="{Binding MainText}" VerticalOptions="Center" HorizontalOptions="Center" />
   <StackLayout  Orientation="Vertical" VerticalOptions="StartAndExpand">
-    <Button Text="Demo: Create Data" MinimumHeightRequest="30" Clicked="OnCreateClicked" />
+    <Button Text="Demo: Create Data" MinimumHeightRequest="30" Clicked="OnCreateButtonClicked" />
     <Button Text="Demo: Read Data" Clicked="OnReadButtonClicked" HeightRequest="50" />
     <Button Text="Demo: Update Data" MinimumHeightRequest="30" Clicked="OnUpdateButtonClicked" />
     <Button Text="Demo: Delete Data" MinimumHeightRequest="30" Clicked="OnDeleteButtonClicked" />

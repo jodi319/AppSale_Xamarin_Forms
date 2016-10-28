@@ -15,26 +15,33 @@ namespace AppSale
             InitializeComponent();
         }
 
-        
-        async void OnCreateClicked(object sender, EventArgs e)
+        //protected override async void OnAppearing()
+        //{
+        //    base.OnAppearing();
+
+        //    // Set syncItems to true in order to synchronize the data on startup when running in offline mode
+        //    await RefreshItems(true, syncItems: false);
+        //}
+
+        async void OnCreateButtonClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new AddFavourite());
         }
 
-        async void OnReadClicked(object sender, EventArgs e)
+        async void OnReadButtonClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new GetFavourites());
         }
 
-        async void OnUpdateClicked(object sender, EventArgs e)
+        async void OnUpdateButtonClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new GetFavourites());
+            await DisplayAlert("Alert", "Update existing data in database (cloud-backend)", "OK");
         }
 
-        async void OnDeleteClicked(object sender, EventArgs e)
+        async void OnDeleteButtonClicked(object sender, EventArgs e)
         {
             //await Navigation.PushAsync(new GetFavourites());
-            MessageBox.Show(":");
+            await DisplayAlert("Alert", "Delete existing data in database (cloud-backend)", "OK");
         }
     }
 }

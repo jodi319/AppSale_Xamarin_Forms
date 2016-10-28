@@ -12,10 +12,11 @@
       <Entry x:Name="usernameEntry" Placeholder="username" />
       <Label Text="Password" />
       <Entry x:Name="passwordEntry" IsPassword="true" />
-      <Button Text="Login" MinimumHeightRequest="30" Clicked="OnLoginButtonClicked" />
-      <Button Text="FaceBook" Clicked="OnFacebookLoginButtonClicked" Image="FACEBOOK.png" HeightRequest="50" />
-      <Button Text="Register" MinimumHeightRequest="30" Clicked="OnSignUpButtonClicked" />
-      <Button Text="Forgot username/password" MinimumHeightRequest="30" Clicked="OnForgotButtonClicked" />
+      <Button x:Name="loginButton" Text="Login" MinimumHeightRequest="30" BackgroundColor="Lime" Clicked="OnLoginButtonClicked" />
+      <Button x:Name="facebookLoginButton" Text="Google" Clicked="OnFacebookLoginButtonClicked" Image="FACEBOOK.png" HeightRequest="50" />
+      <Button x:Name="registerButton" Text="Register" MinimumHeightRequest="30" Clicked="OnSignUpButtonClicked" />
+      <Button x:Name="forgotButton" Text="Forgot username/password" MinimumHeightRequest="30" Clicked="OnForgotButtonClicked" />
+      <Button x:Name="logoutButton" Text="Logout" MinimumHeightRequest="30" Clicked="OnLogoutButtonClicked" />
       <Label x:Name="messageLabel" />
     </StackLayout>
   <!--</ContentPage.Content>-->

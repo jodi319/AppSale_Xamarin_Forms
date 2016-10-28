@@ -7,10 +7,10 @@ namespace AppSale
 {
 	public class App : Application
 	{
-        public interface IAuthenticate
-        {
-            Task<bool> Authenticate();
-        }
+        //public interface IAuthenticate
+        //{
+        //    Task<bool> Authenticate();
+        //}
 
         public App ()
 		{

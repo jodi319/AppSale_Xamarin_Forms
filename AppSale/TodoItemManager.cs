@@ -105,6 +105,7 @@ namespace AppSale
             }
             return null;
         }
+
         public async Task<ObservableCollection<Favourites>> GetTodoItemsAsync(bool syncItems = false)
         {
             try

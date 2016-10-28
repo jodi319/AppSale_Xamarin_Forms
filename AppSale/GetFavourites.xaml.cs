@@ -49,6 +49,8 @@ namespace AppSale
 
             myListView.ItemsSource =  await manager.GetFavouritesAsync();
             //todoList.ItemsSource = await manager.GetTodoItemsAsync();
+            todoList.ItemsSource = myListView.ItemsSource;
+            await DisplayAlert("Alert", myListView.ItemsSource.ToString(), "OK");
         }
     }
 }
