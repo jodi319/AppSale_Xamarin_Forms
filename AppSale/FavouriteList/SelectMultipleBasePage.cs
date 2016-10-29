@@ -67,7 +67,9 @@ namespace Multiselect
 
             }
         }
+
 		public List<WrappedSelection<T>> WrappedItems = new List<WrappedSelection<T>>();
+
 		public SelectMultipleBasePage(List<T> items)
 		{
 			WrappedItems = items.Select (item => new WrappedSelection<T> () { Item = item, IsSelected = false }).ToList ();
@@ -108,18 +110,21 @@ namespace Multiselect
                 ToolbarItems.Add(new ToolbarItem("None", null, SelectNone, ToolbarItemOrder.Primary));
             }
         }
+
 		void SelectAll ()
 		{
 			foreach (var wi in WrappedItems) {
 				wi.IsSelected = true;
 			}
 		}
+
 		void SelectNone ()
 		{
 			foreach (var wi in WrappedItems) {
 				wi.IsSelected = false;
 			}
 		}
+
 		public List<T> GetSelection() 
 		{
 			return WrappedItems.Where (item => item.IsSelected).Select (wrappedItem => wrappedItem.Item).ToList ();	

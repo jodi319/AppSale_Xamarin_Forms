@@ -16,7 +16,7 @@
           <ColumnDefinition />
           <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <Entry x:Name="newItemName" Placeholder="Read Items with value less then 5" />
+        <Entry x:Name="newItemName" Placeholder="Items bigger then 5" />
         <StackLayout x:Name="buttonsPanel" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="StartAndExpand">
           <Button Text="Get" MinimumHeightRequest="30" Clicked="GetClick" />
           <Button Text="Logout" BackgroundColor="Lime" Clicked="OnLogoutButtonClicked" />

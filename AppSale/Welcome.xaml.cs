@@ -40,7 +40,7 @@ namespace AppSale
                 this.forgotButton.IsVisible = false;
                 this.logoutButton.IsVisible = true;
 
-                await DisplayAlert("number of items on nav bar: ", ToolbarItems.Count.ToString(), "OK");
+                //await DisplayAlert("number of items on nav bar: ", ToolbarItems.Count.ToString(), "OK");
                 //if (ToolbarItems.Count > 0)
                 //{
                 //    ToolbarItems.Clear();
@@ -73,10 +73,27 @@ namespace AppSale
 
                 //this.forwardNav.Effects.Clear();
                 this.loginButton.IsVisible = true;
-            this.facebookLoginButton.IsVisible = true;
-            this.registerButton.IsVisible = true;
-            this.forgotButton.IsVisible = true;
-            this.logoutButton.IsVisible = false;
+                this.facebookLoginButton.IsVisible = true;
+                this.registerButton.IsVisible = true;
+                this.forgotButton.IsVisible = true;
+                this.logoutButton.IsVisible = false;
+            }
+
+            if (multiPage != null)
+            {
+                messageLabel.Text = "";
+                var answers = multiPage.GetSelection();
+                foreach (var a in answers)
+                {
+                    messageLabel.Text += a.Name + ", ";
+                    //ADD CODE HERE - set integer values = 1 for a.Name = Favourites Class
+                }
+                //Favourites FavItem = SetFavItem(answers);
+                //                AddItem();
+            }
+            else
+            {
+                messageLabel.Text = "";
             }
 
         }
