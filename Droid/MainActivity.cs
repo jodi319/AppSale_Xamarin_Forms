@@ -11,6 +11,7 @@ using Microsoft.WindowsAzure.MobileServices;
 using System.Threading.Tasks;
 using static AppSale.App;
 using Android.Webkit;
+using Android.Graphics.Drawables;
 
 namespace AppSale.Droid
 {
@@ -28,8 +29,10 @@ namespace AppSale.Droid
 		{
 			base.OnCreate (bundle);
 
-			// Initialize Azure Mobile Apps
-			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
+            ActionBar.SetIcon(new ColorDrawable(Resources.GetColor(Android.Resource.Color.Transparent)));
+
+            // Initialize Azure Mobile Apps
+            Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
 
 			// Initialize Xamarin Forms
 			global::Xamarin.Forms.Forms.Init (this, bundle);

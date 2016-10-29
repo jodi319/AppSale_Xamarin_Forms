@@ -35,13 +35,13 @@ namespace AppSale
 
         async void OnUpdateButtonClicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Alert", "Update existing data in database (cloud-backend)", "OK");
+            await DisplayAlert("UNDER CONSTRUCTION", "Update existing data in database (cloud-backend)", "OK");
         }
 
         async void OnDeleteButtonClicked(object sender, EventArgs e)
         {
             //await Navigation.PushAsync(new GetFavourites());
-            await DisplayAlert("Alert", "Delete existing data in database (cloud-backend)", "OK");
+            await DisplayAlert("UNDER CONSTRUCTION", "Delete existing data in database (cloud-backend)", "OK");
         }
     }
 }

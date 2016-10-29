@@ -25,6 +25,7 @@ namespace AppSale
         {
             base.OnAppearing();
 
+            ToolbarItems.Clear();
             // Refresh items only when authenticated.
             if (authenticated == true)
             {
@@ -38,9 +39,39 @@ namespace AppSale
                 this.registerButton.IsVisible = false;
                 this.forgotButton.IsVisible = false;
                 this.logoutButton.IsVisible = true;
+
+                await DisplayAlert("number of items on nav bar: ", ToolbarItems.Count.ToString(), "OK");
+                //if (ToolbarItems.Count > 0)
+                //{
+                //    ToolbarItems.Clear();
+                //    ToolbarItems.RemoveAt(0);
+                //}
+                ToolbarItems.Add(new ToolbarItem("Next", "filter.png", async () =>
+                {
+                    await Navigation.PushAsync(new TestPage());
+                    //var page = new ContentPage();
+                    //var result = await page.DisplayAlert("Title", "Message", "Accept", "Cancel");
+                    //Debug.WriteLine("success: {0}", result);
+                }));
+                //this.forwardNav.Effects.Clear();
+                //ToolbarItems.Add(new ToolbarItem("Filter", "filter.png", async () =>
+                //{
+                //    await Navigation.PushAsync(new TestPage());
+                //    //var page = new ContentPage();
+                //    //var result = await page.DisplayAlert("Title", "Message", "Accept", "Cancel");
+                //    //Debug.WriteLine("success: {0}", result);
+                //}));
             }
             else
             {
+                //DisplayAlert("number of items on nav bar: ", ToolbarItems.Count.ToString(), "OK");
+                //if (ToolbarItems.Count > 0)
+                //{
+                //ToolbarItems.Clear();
+                //ToolbarItems.RemoveAt(0);
+                //}
+
+                //this.forwardNav.Effects.Clear();
                 this.loginButton.IsVisible = true;
             this.facebookLoginButton.IsVisible = true;
             this.registerButton.IsVisible = true;
@@ -64,22 +95,26 @@ namespace AppSale
                 //await Navigation.PushModalAsync(multiPage);
                 //-----------------------------------------------------------------------------------------------
                 var items = new List<CheckItem>();
-                items.Add(new CheckItem { Name = "Xamarin.com" });
-                items.Add(new CheckItem { Name = "Twitter" });
-                items.Add(new CheckItem { Name = "Facebook" });
-                items.Add(new CheckItem { Name = "Internet ad" });
-                items.Add(new CheckItem { Name = "Online article" });
-                items.Add(new CheckItem { Name = "Magazine ad" });
-                items.Add(new CheckItem { Name = "Friends" });
-                items.Add(new CheckItem { Name = "At work" });
+                items.Add(new CheckItem { Name = "FASHION & BEAUTY" });
+                items.Add(new CheckItem { Name = "SPORTS & OUTDOOR" });
+                items.Add(new CheckItem { Name = "PETS" });
+                items.Add(new CheckItem { Name = "VEHICLES" });
+                items.Add(new CheckItem { Name = "HOME IMPROVEMENT" });
+                items.Add(new CheckItem { Name = "BABIES / CHILDREN" });
+                items.Add(new CheckItem { Name = "HOOBIES INTERESTS" });
+                items.Add(new CheckItem { Name = "MOBILE PHONES & ACCESSORIES" });
+                items.Add(new CheckItem { Name = "HOME APPLIANCES" });
+                items.Add(new CheckItem { Name = "GAMING" });
+                items.Add(new CheckItem { Name = "BOOKS" });
+                items.Add(new CheckItem { Name = "MUSIC" });
 
 
                 //todoList.ItemsSource = items;
                 if (multiPage == null)
-                    multiPage = new SelectMultipleBasePage<CheckItem>(items) { Title = "Check all that apply" };
+                    multiPage = new SelectMultipleBasePage<CheckItem>(items) { Title = "Select your favourites" };
 
-                await Navigation.PushModalAsync(multiPage);
-                //await Navigation.PushAsync(multiPage);
+                //await Navigation.PushModalAsync(multiPage);
+                await Navigation.PushAsync(multiPage);
                 //----------------------------------------------------------------------------------------------------
                 AppSale.Helpers.Settings.InitFavSet = false;
             }
@@ -190,5 +225,11 @@ namespace AppSale
                 await Navigation.PopAsync();
             }
         }
+
+        //async void OnNextPageClicked(object sender, EventArgs e)
+        //{
+        //    //DisplayAlert("number of items on nav bar: ", ToolbarItems.Count.ToString(), "OK");
+        //    await Navigation.PushAsync(new TestPage());
+        //}
     }
 }
