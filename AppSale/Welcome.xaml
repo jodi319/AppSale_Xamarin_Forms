@@ -13,7 +13,7 @@
     <Entry x:Name="usernameEntry" Placeholder="username" />
     <!--<Label Text="Password" />-->
     <Entry x:Name="passwordEntry" IsPassword="true" Placeholder="password"/>
-    <Button x:Name="loginButton" Text="Login" MinimumHeightRequest="30" BackgroundColor="Lime" Clicked="OnLoginButtonClicked" />
+    <Button x:Name="loginButton" Text="Login" MinimumHeightRequest="30" BackgroundColor="Yellow" Clicked="OnLoginButtonClicked" />
     <Button x:Name="facebookLoginButton" Text="Google" BackgroundColor="Red" Clicked="OnFacebookLoginButtonClicked" Image="FACEBOOK.png" HeightRequest="50" />
     <Button x:Name="registerButton" Text="Register" BackgroundColor="Blue" MinimumHeightRequest="30" Clicked="OnSignUpButtonClicked" />
     <Button x:Name="forgotButton" Text="Forgot username/password" MinimumHeightRequest="30" Clicked="OnForgotButtonClicked" />

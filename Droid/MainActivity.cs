@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using static AppSale.App;
 using Android.Webkit;
 using Android.Graphics.Drawables;
+using Gcm.Client;
 
 namespace AppSale.Droid
 {
@@ -25,9 +26,24 @@ namespace AppSale.Droid
         // Define a authenticated user.
         private MobileServiceUser user;
 
-		protected override void OnCreate (Bundle bundle)
+        // Create a new instance field for this activity.
+        static MainActivity instance = null;
+
+        // Return the current activity instance.
+        public static MainActivity CurrentActivity
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
+        protected override void OnCreate (Bundle bundle)
 		{
-			base.OnCreate (bundle);
+            //// Set the current instance of MainActivity.
+            //instance = this;
+
+            base.OnCreate (bundle);
 
             ActionBar.SetIcon(new ColorDrawable(Resources.GetColor(Android.Resource.Color.Transparent)));
 
@@ -41,7 +57,26 @@ namespace AppSale.Droid
             App.Init((IAuthenticate)this);
             // Load the main application
             LoadApplication (new App ());
-		}
+
+            //try
+            //{
+            //    // Check to ensure everything's setup right
+            //    GcmClient.CheckDevice(this);
+            //    GcmClient.CheckManifest(this);
+
+            //    // Register for push notifications
+            //    System.Diagnostics.Debug.WriteLine("Registering...");
+            //    GcmClient.Register(this, PushHandlerBroadcastReceiver.SENDER_IDS);
+            //}
+            //catch (Java.Net.MalformedURLException)
+            //{
+            //    CreateAndShowDialog("There was an error creating the client. Verify the URL.", "Error");
+            //}
+            //catch (Exception e)
+            //{
+            //    CreateAndShowDialog(e.Message, "Error");
+            //}
+        }
 
 
 
@@ -53,10 +88,10 @@ namespace AppSale.Droid
                 if (user == null)
                 {
                     // The authentication provider could also be Facebook, Twitter, or Microsoft
-                    user = await TodoItemManager.DefaultManager.CurrentClient.LoginAsync(this, MobileServiceAuthenticationProvider.Google);
+                    user = await TodoItemManager.DefaultManager.CurrentClient.LoginAsync(this, MobileServiceAuthenticationProvider.Facebook);
                     if (user != null)
                     {
-                        CreateAndShowDialog(string.Format("You are now logged in - {0}", user.UserId), "Logged in!");
+                        CreateAndShowDialog("You are now logged in", "Logged in!");
                     }
                 }
                 success = true;
@@ -95,10 +130,20 @@ namespace AppSale.Droid
             var builder = new AlertDialog.Builder(this);
             builder.SetMessage(message);
             builder.SetTitle(title);
-            builder.SetNeutralButton("OK", (sender, args) => {
+            builder.SetNeutralButton("OK", (sender, args) =>
+            {
             });
             builder.Create().Show();
         }
+
+        //private void CreateAndShowDialog(String message, String title)
+        //{
+        //    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        //    builder.SetMessage(message);
+        //    builder.SetTitle(title);
+        //    builder.Create().Show();
+        //}
     }
 }
 
